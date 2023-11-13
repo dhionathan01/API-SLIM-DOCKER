@@ -10,6 +10,8 @@ services:
       - ./project:/var/www/html
     depends_on:
       - mysql
+    environment:
+      COMPOSER_PROCESS_TIMEOUT: 600
 
   mysql:
     image: mysql:latest
