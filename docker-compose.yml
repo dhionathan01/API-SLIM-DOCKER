@@ -1,0 +1,27 @@
+version: '3'
+services:
+  php-apache:
+    image: php:7-apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./project:/var/www/html
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password_api_slim_framework'
+      MYSQL_DATABASE: 'api_slim_framework_com_docker'
+      MYSQL_PASSWORD: 'password_api_slim_framework'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: 'password_api_slim_framework'
