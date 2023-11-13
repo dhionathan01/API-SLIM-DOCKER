@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:8-apache
 
 WORKDIR /var/www/html
 
@@ -8,14 +8,5 @@ RUN apt-get update \
 
 # Instale o Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Copie o arquivo composer.json para o contêiner
-COPY composer.json .
-
-# Instale as dependências do Composer
-RUN composer install
-
-# Verifique a instalação do Composer
-RUN composer --version
 
 CMD ["apache2-foreground"]
